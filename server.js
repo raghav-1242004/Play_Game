@@ -7,6 +7,10 @@ const { Server } = require("socket.io");
 const { Chess } = require("chess.js");
 
 const app = express();
+
+// Important for secure session cookies behind Render proxy
+app.set("trust proxy", 1);
+
 const server = http.createServer(app);
 const io = new Server(server, { pingInterval: 25000, pingTimeout: 20000 });
 const PORT = process.env.PORT || 3000;
